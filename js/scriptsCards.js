@@ -20,7 +20,7 @@ function llenarCardsMonstruos(monstruos)
         const card = document.createElement('div');
         card.classList.add('card');
         card.onclick = function () {
-            mostrarDetallesMonstruo(monstruo.nombre, monstruo.alias, monstruo.defensa, monstruo.miedo, monstruo.tipo);
+            mostrarDetallesMonstruo(monstruo.nombre, monstruo.alias, monstruo.defensa, monstruo.miedo, monstruo.tipo, monstruo.habilidades);
         };
 
         const cardContent = document.createElement('div');
@@ -45,11 +45,26 @@ function llenarCardsMonstruos(monstruos)
         tipoMonstruo.classList.add('monster-details');
         tipoMonstruo.textContent = `Tipo: ${monstruo.tipo}`;
 
+        const habilidadesMonstruo = document.createElement('p');
+        habilidadesMonstruo.classList.add('monster-details');
+        habilidadesMonstruo.textContent = `Habilidades:`;
+
+        monstruo.habilidades.forEach((habilidad, index) => {
+            const habilidadElement = document.createElement('span');
+            habilidadElement.textContent = `${habilidad}`;
+            habilidadesMonstruo.appendChild(habilidadElement);
+
+            if (index < monstruo.habilidades.length - 1) {
+                habilidadesMonstruo.appendChild(document.createTextNode(', '));
+            }
+        });;
+
         cardContent.appendChild(nombreMonstruo);
         cardContent.appendChild(aliasMonstruo);
         cardContent.appendChild(defensaMonstruo);
         cardContent.appendChild(miedoMonstruo);
         cardContent.appendChild(tipoMonstruo);
+        cardContent.appendChild(habilidadesMonstruo);
 
         card.appendChild(cardContent);
         contenedorMonstruos.appendChild(card);
