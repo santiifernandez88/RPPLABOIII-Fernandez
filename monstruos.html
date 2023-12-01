@@ -58,6 +58,18 @@
                 <input type="checkbox" id="inmortalidad" name="habilidades" value="inmortalidad"><br>
               </div>
 
+              <div class="indumentaria-radio">
+                <label for="indumentaria">Indumentaria:</label>
+                <label for="Capa">Capa</label>
+                <input type="radio" id="Capa" name="indumentaria" value="Capa">
+                
+                <label for="sombrero">Sombrero</label>
+                <input type="radio" id="sombrero" name="indumentaria" value="sombrero">
+                
+                <label for="botas">Botas</label>
+                <input type="radio" id="botas" name="indumentaria" value="botas">
+              </div>
+
               <label for="miedo">Miedo:</label>
               <input type="range" id="miedo" name="miedo" min="0" max="100" value="50">
 
@@ -68,6 +80,11 @@
                 <button type="submit" id="guardarBtn">Guardar</button>
                 <button type="reset" id="cancelarBtn">Cancelar</button>
                 <button type="button" id="eliminarBtn">Eliminar</button>
+              </div>
+
+              <div class="custom-alerta" id="customAlerta">
+                <p id="customAlertaMensaje"></p>
+                <button type="button" id="cerrarAlerta" onclick=cerrarCustomAlerta()>Cerrar</button>
               </div>
               
             </form>
@@ -85,6 +102,7 @@
                   <th>Miedo</th>
                   <th>Tipo</th>
                   <th>Habilidades</th>
+                  <th>Indumentaria</th>
                 </tr>
               </thead>
               <tbody>
