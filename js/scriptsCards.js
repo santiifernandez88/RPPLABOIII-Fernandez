@@ -1,72 +1,53 @@
 const tablaMonstruos = document.getElementById('tablaMonstruos');
 const monsterForm = document.getElementById("monsterForm");
-const monstruosGuardados = JSON.parse(localStorage.getItem('monstruos')) || [];
+const url = "http://localhost:3000/monstruos";
+const contenedorMonstruos = document.getElementById('contenedorMonstruos');
 
 document.addEventListener('DOMContentLoaded', function () 
 {
-    llenarCardsMonstruos(monstruosGuardados);    
-});
-
-
-function llenarCardsMonstruos(monstruos)
-{
-    const contenedorMonstruos = document.getElementById('contenedorMonstruos');
-    
-    while (contenedorMonstruos.hasChildNodes()) {
-        contenedorMonstruos.removeChild(contenedorMonstruos.firstChild);
-    }
-
-    monstruos.forEach(monstruo => {
+    getFetchMonstruos(url)
+    .then((data) => 
+    {
+        data.forEach((monster) => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.onclick = function () {
-            mostrarDetallesMonstruo(monstruo.nombre, monstruo.alias, monstruo.defensa, monstruo.miedo, monstruo.tipo, monstruo.habilidades);
-        };
-
-        const cardContent = document.createElement('div');
-        cardContent.classList.add('card-content');
-
-        const nombreMonstruo = document.createElement('h3');
-        nombreMonstruo.textContent = monstruo.nombre;
-
-        const aliasMonstruo = document.createElement('p');
-        aliasMonstruo.classList.add('monster-details');
-        aliasMonstruo.textContent = `Alias: ${monstruo.alias}`;
-
-        const defensaMonstruo = document.createElement('p');
-        defensaMonstruo.classList.add('monster-details');
-        defensaMonstruo.textContent = `Defensa: ${monstruo.defensa}`;
-
-        const miedoMonstruo = document.createElement('p');
-        miedoMonstruo.classList.add('monster-details');
-        miedoMonstruo.textContent = `Miedo: ${monstruo.miedo}`;
-
-        const tipoMonstruo = document.createElement('p');
-        tipoMonstruo.classList.add('monster-details');
-        tipoMonstruo.textContent = `Tipo: ${monstruo.tipo}`;
-
-        const habilidadesMonstruo = document.createElement('p');
-        habilidadesMonstruo.classList.add('monster-details');
-        habilidadesMonstruo.textContent = `Habilidades:`;
-
-        monstruo.habilidades.forEach((habilidad, index) => {
-            const habilidadElement = document.createElement('span');
-            habilidadElement.textContent = `${habilidad}`;
-            habilidadesMonstruo.appendChild(habilidadElement);
-
-            if (index < monstruo.habilidades.length - 1) {
-                habilidadesMonstruo.appendChild(document.createTextNode(', '));
-            }
-        });;
-
-        cardContent.appendChild(nombreMonstruo);
-        cardContent.appendChild(aliasMonstruo);
-        cardContent.appendChild(defensaMonstruo);
-        cardContent.appendChild(miedoMonstruo);
-        cardContent.appendChild(tipoMonstruo);
-        cardContent.appendChild(habilidadesMonstruo);
-
-        card.appendChild(cardContent);
-        contenedorMonstruos.appendChild(card);
+        card.innerHTML = `
+            <h2>${monster.nombre}</h2>
+            <p>Alias: ${monster.alias}</p>
+            <p>Tipo: ${monster.tipo}</p>
+            <p>Miedo: ${monster.miedo}</p>
+            <p>Defensa: ${monster.defensa}</p>
+            <p>Habilidades: ${monster.habilidades}</p>
+            <p>Indumentaria: ${monster.indumentaria}</p>
+          `;
+          contenedorMonstruos.appendChild(card);
+        });
+    })
+    .catch((error) => 
+    {
+        console.error('Error al obtener los datos:', error);
     });
+});
+
+function getFetchMonstruos(url)
+{
+  return new Promise(async (resolve, reject) =>
+  {
+    try
+    {
+      const res = await fetch(url);
+      if(!res.ok) 
+      {
+        console.error(`Error ${res.status}: ${res.statusText}`);
+        reject(res);
+      }
+      const data = await res.json();
+      resolve(data);
+    } 
+    catch(error) 
+    {
+      console.error(`Error: ${error}`);
+      reject(error);
+    }
+  });
 }

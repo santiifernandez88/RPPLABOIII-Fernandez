@@ -1,0 +1,53 @@
+{
+  "monstruos": [
+    {
+      "nombre": "Dracula",
+      "alias": "dracu",
+      "defensa": "crucifijo",
+      "miedo": "50",
+      "tipo": "Vampiro",
+      "habilidades": [
+        "magia"
+      ],
+      "indumentaria": "sombrero",
+      "id": 3
+    },
+    {
+      "nombre": "Marlen",
+      "alias": "Mar",
+      "defensa": "pocion",
+      "miedo": "76",
+      "tipo": "Bruja",
+      "habilidades": [
+        "velocidad",
+        "inmortalidad"
+      ],
+      "indumentaria": "botas",
+      "id": 4
+    },
+    {
+      "nombre": "Frankestein",
+      "alias": "Frank",
+      "defensa": "crucifijo",
+      "miedo": "30",
+      "tipo": "Zombie",
+      "habilidades": [
+        "fuerza"
+      ],
+      "indumentaria": "capa",
+      "id": 5
+    },
+    {
+      "nombre": "Carlos",
+      "alias": "zomb",
+      "defensa": "pocion",
+      "miedo": "60",
+      "tipo": "Zombie",
+      "habilidades": [
+        "fuerza"
+      ],
+      "indumentaria": "botas",
+      "id": 6
+    }
+  ]
+}
