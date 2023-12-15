@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function ()
   {
     checkbox.addEventListener('change', function () 
     {
-      guardarCheckboxesSeleccionados(); // Guardar los estados de los checkboxes en localStorage
-      mostrarOcultarColumnasDinamico(); // Mostrar u ocultar las columnas según los checkboxes
+      guardarCheckboxesSeleccionados(); 
+      mostrarOcultarColumnasDinamico(); 
     });
   });
 
@@ -118,7 +118,7 @@ function filtrarTablaPorTipo(tipo)
 
   filas.forEach(fila => 
   {
-    const tipoFila = fila.querySelector('td:nth-child(5)').textContent; // Ajusta el índice según la estructura real de tu tabla
+    const tipoFila = fila.querySelector('td:nth-child(5)').textContent; 
 
     if(tipo === 'Todos' || tipoFila === tipo) 
     {
@@ -420,7 +420,7 @@ function obtenerMiedosEnTabla() {
     .filter(row => row.style.display !== 'none');
 
   const miedos = filasVisibles.map(row => {
-    const miedoCell = row.querySelector('td:nth-child(4)'); // Ajusta el índice según la estructura real de tu tabla
+    const miedoCell = row.querySelector('td:nth-child(4)'); 
 
     if (miedoCell) {
       const miedo = parseFloat(miedoCell.textContent.trim());
@@ -429,11 +429,11 @@ function obtenerMiedosEnTabla() {
         return miedo;
       }
     }
-    return 0; // Devuelve 0 si no se encuentra un valor numérico en la celda de miedo
+    return 0; 
   });
 
   console.log('Miedos encontrados:', miedos);
-  return miedos.filter(miedo => miedo !== 0); // Filtra los valores no numéricos
+  return miedos.filter(miedo => miedo !== 0); 
 }
 
 
@@ -447,7 +447,7 @@ function calcularPromedioMiedo() {
 
   const suma = miedos.reduce((anterior, actual) => anterior + actual, 0);
   const promedio = suma / miedos.length;
-  return promedio.toFixed(2); // Redondear a dos decimales
+  return promedio.toFixed(2); 
 }
 
 function calcularMaximoMiedo() 
@@ -510,8 +510,6 @@ function manejarFiltroColumnas() {
       mostrarOcultarColumnasDinamico()
     });
   });
-
-  //marcarTodosCheckboxes(true); // Marcar todos los checkboxes al cargar la página
 }
 
 function mostrarOcultarColumnasDinamico() {
@@ -556,7 +554,6 @@ function obtenerMonstruoPorNombreYAlias(nombre, alias) {
   });
 }
 
-//Get Ajax Monstruos para monstruos.html
 function getMonstruos(url)
 {
   return new Promise((resolve, reject) => 
@@ -589,7 +586,6 @@ function getMonstruos(url)
   });
 }
 
-//Post Ajax Monstruo para monstruos.html
  function postMonstruo(url,nuevoMonstruo)
  {
   return new Promise((resolve, reject) =>
@@ -661,7 +657,6 @@ function updateMonstruo(url, objeto)
   });
 }
 
-//axios get un monstruo para monstruos.hmtl
 function getMonstruoPorNombreYAlias(url, nombre, alias) {
   const params = { nombre, alias };
 
@@ -683,8 +678,6 @@ function getMonstruoPorNombreYAlias(url, nombre, alias) {
     });
 }
 
-
-//Delete axios para monstruos.html
 function deleteMonstruo(url, id) 
 {
   return new Promise((resolve, reject) => 
